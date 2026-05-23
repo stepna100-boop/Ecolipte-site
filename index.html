@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>minimal pyramids</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      font-size: 28px;
+      opacity: 0.9;
+    }
+
+    p {
+      opacity: 0.6;
+    }
+
+    /* пирамиды */
+    .pyramid {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 50px solid rgba(255,255,255,0.15);
+      animation: float 6s infinite ease-in-out;
+      filter: blur(0.2px);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.2;
+      }
+      50% {
+        transform: translateY(-40px) rotate(15deg);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.2;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>minimal space</h1>
+    <p>floating pyramids simulation</p>
+  </div>
+
+  <script>
+    const count = 18;
+
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement("div");
+      p.className = "pyramid";
+
+      p.style.left = Math.random() * 100 + "vw";
+      p.style.top = Math.random() * 100 + "vh";
+
+      p.style.animationDuration = (4 + Math.random() * 6) + "s";
+      p.style.opacity = Math.random() * 0.5;
+
+      document.body.appendChild(p);
+    }
+  </script>
+
+</body>
+</html>
