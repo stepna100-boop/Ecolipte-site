@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>minimal pyramids</title>
+  <title>client site</title>
 
   <style>
     body {
@@ -14,64 +14,85 @@
       color: white;
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      flex-direction: column;
-    }
-
-    h1 {
-      font-size: 28px;
-      opacity: 0.9;
-    }
-
-    p {
-      opacity: 0.6;
-    }
-
-    /* пирамиды */
+    /* фон */
     .pyramid {
       position: absolute;
       width: 0;
       height: 0;
-      border-left: 30px solid transparent;
-      border-right: 30px solid transparent;
-      border-bottom: 50px solid rgba(255,255,255,0.15);
-      animation: float 6s infinite ease-in-out;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 16px solid rgba(170, 0, 255, 0.25);
       filter: blur(0.2px);
+      animation: float 8s infinite ease-in-out;
+      z-index: 0;
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 0.2;
-      }
-      50% {
-        transform: translateY(-40px) rotate(15deg);
-        opacity: 0.5;
-      }
-      100% {
-        transform: translateY(0px) rotate(0deg);
-        opacity: 0.2;
-      }
+      0%   { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+      50%  { transform: translateY(-60px) rotate(25deg); opacity: 0.6; }
+      100% { transform: translateY(0px) rotate(0deg); opacity: 0.2; }
+    }
+
+    /* центр */
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .desc {
+      max-width: 420px;
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #7a00ff;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .links {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+
+    .links span {
+      margin: 0 10px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="container">
-    <h1>minimal space</h1>
-    <p>floating pyramids simulation</p>
-  </div>
-
+  <!-- фон пирамиды -->
   <script>
-    const count = 18;
+    const count = 25;
 
     for (let i = 0; i < count; i++) {
       const p = document.createElement("div");
@@ -80,12 +101,37 @@
       p.style.left = Math.random() * 100 + "vw";
       p.style.top = Math.random() * 100 + "vh";
 
-      p.style.animationDuration = (4 + Math.random() * 6) + "s";
+      const size = 6 + Math.random() * 10;
+      p.style.borderLeftWidth = size + "px";
+      p.style.borderRightWidth = size + "px";
+      p.style.borderBottomWidth = size * 1.6 + "px";
+
+      p.style.animationDuration = (5 + Math.random() * 6) + "s";
       p.style.opacity = Math.random() * 0.5;
 
       document.body.appendChild(p);
     }
   </script>
+
+  <!-- центр -->
+  <div class="container">
+    <div class="logo">Ecolipt Client</div>
+
+    <button onclick="window.location.href='YOUR_FILE_LINK'">
+      Download
+    </button>
+
+    <div class="desc">
+      Пожалуй самый дешевый клиент
+    Ecolipt сила pulse могила
+    </div>
+  </div>
+
+  <!-- нижние ссылки -->
+  <div class="links">
+    <span>Telegram: @nn</span>
+    <span>Discord: nn</span>
+  </div>
 
 </body>
 </html>
